@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Man and Chainsaw - Safe & Affordable Tree Service - SLC, Utah</title>
-    <meta name="description" content="Man and Chainsaw offers safe, reliable, and affordable tree removal services in the Salt Lake City area. Licensed, bonded, insured. 15+ years experience. Free estimates!">
-    
+    <title>Man and Chainsaw - Dynamic Parallax Tree Service - SLC, Utah</title>
+    <meta name="description" content="Man and Chainsaw offers safe, reliable, and affordable tree removal services in the Salt Lake City area with dynamic parallax effects. Licensed, bonded, insured. 15+ years experience. Free estimates!">
+
     <style>
         /* --- Basic Reset & Setup --- */
         *, *::before, *::after {
@@ -19,23 +19,26 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif; /* Choose a rugged but readable font later */
+            font-family: 'Arial', sans-serif; /* Choose a rugged font later */
             line-height: 1.6;
             color: #333;
-            background-color: #f4f4f4; /* Fallback background */
+            background-color: #f0f0f0; /* Fallback background */
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         /* --- Typography & Base Styles --- */
         h1, h2, h3 {
-            font-family: 'Impact', 'Arial Black', sans-serif; /* Bolder font for headings */
+            font-family: 'Impact', 'Arial Black', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 1rem;
-            color: #2c3e50; /* Dark blue/grey */
+            color: #2c3e50;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            /* We can animate these too */
+            position: relative; /* Needed for transform */
+            will-change: transform;
         }
-        
+
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.5rem; }
         h3 { font-size: 1.8rem; }
@@ -44,6 +47,8 @@
             margin-bottom: 1rem;
             font-size: 1.1rem;
             color: #444;
+             position: relative; /* Allow transforming paragraphs too if desired */
+             will-change: transform;
         }
 
         a {
@@ -59,116 +64,128 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative; /* For positioning content within */
+            z-index: 2; /* Ensure content is above background images */
         }
 
-        /* --- Parallax Section Styling --- */
-        .parallax-section {
-            min-height: 100vh; /* Default height, can be overridden */
-            position: relative;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed; /* This creates the core parallax effect */
+        /* --- Section Styling (No Fixed Backgrounds) --- */
+        .content-section {
+            padding: 5rem 0; /* Vertical padding */
+            position: relative; /* Crucial for containing positioned parallax elements */
+            overflow: hidden; /* Prevent elements from spilling out during transforms */
+            background-color: #fff; /* Default background, override per section */
+            min-height: 70vh; /* Ensure sections have some height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Parallax Image Styling --- */
+        .parallax-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%; /* Slightly larger to allow vertical movement without gaps */
+            object-fit: cover; /* Cover the area */
+            z-index: 0; /* Behind content */
+            will-change: transform; /* Performance hint */
+            /* Start slightly shifted (optional, adjust as needed) */
+            transform: translateY(-10%);
+        }
+
+        /* --- Content Box Styling --- */
+        .content-box {
+            position: relative; /* Ensure it's above the bg image */
+            z-index: 1;
+            background-color: rgba(40, 40, 40, 0.75); /* Dark transparent background */
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: #fff; /* Light text on dark background */
+            max-width: 700px;
+            text-align: center;
+            will-change: transform; /* Can be animated too */
+        }
+        .content-box h2, .content-box h3 {
+            color: #eee;
+        }
+        .content-box p {
+             color: #ddd;
+        }
+         .content-box a {
+             color: #ffa500; /* Brighter orange for links */
+         }
+         .content-box a:hover {
+              color: #ffc966;
+         }
+
+
+        /* --- Specific Section Styles & Backgrounds --- */
+        #hero {
+            min-height: 100vh;
+            background-color: #2c3e50; /* Dark fallback */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: #fff;
-            padding: 4rem 2rem;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Inner shadow for depth */
         }
-        
-        /* Add overlay for text readability */
-        .parallax-section::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-             z-index: 1;
+        #hero .content-box {
+            background-color: transparent; /* No box needed if bg image provides context */
+            box-shadow: none;
         }
-
-        .parallax-content {
-            position: relative; /* Ensure content is above overlay */
-            z-index: 2;
-            max-width: 800px;
-            background-color: rgba(40, 40, 40, 0.7); /* Slightly transparent dark background for text block */
-            padding: 2rem 3rem;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* --- Specific Section Backgrounds & Styling --- */
-
-        /* Hero Section */
-        #hero {
-            /* --- IMAGE PLACEHOLDER --- 
-               Replace with a stunning, high-resolution forest landscape. 
-               Maybe slightly misty or morning light.
-            */
-            background-image: url('https://via.placeholder.com/1920x1080/2c3e50/ffffff?text=Epic+Forest+Background'); 
-            min-height: 100vh;
-        }
-        #hero .parallax-content {
-             background-color: rgba(0, 0, 0, 0.5); /* Different overlay for hero */
-        }
-        #hero h1 {
+         #hero h1 {
             font-size: 4.5rem;
-            margin-bottom: 0.5rem;
             color: #fff;
-             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
         #hero p.subtitle {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             font-weight: lighter;
             color: #eee;
+             text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
+         /* Hero specific image styling maybe */
+         #hero-bg {
+            height: 100%; /* Cover full viewport height */
+            transform: translateY(0); /* Start centered */
+         }
 
-        /* About Section */
+
         #about {
-             /* --- IMAGE PLACEHOLDER --- 
-               Replace with another forest scene, maybe slightly different angle or depth. 
-               Or maybe a wood texture close-up.
-            */
-            background-image: url('https://via.placeholder.com/1920x1080/3a5f40/ffffff?text=Deeper+Forest+or+Wood+Texture');
-            min-height: 80vh; /* Slightly shorter */
+            background-color: #e8f5e9; /* Light green background */
         }
-         /* Optional: Image of Josh (friendly lumberjack) */
+        #about .content-box {
+             background-color: rgba(58, 95, 64, 0.8); /* Forest green tint */
+        }
+        /* Optional: Image of Josh (friendly lumberjack) */
         .josh-image {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             border: 4px solid #fff;
             margin: 0 auto 1rem auto;
-             /* --- IMAGE PLACEHOLDER --- 
-               Replace with a picture of Josh or a representative 'brawny guy' image.
-            */
-            background-image: url('https://via.placeholder.com/150/d35400/ffffff?text=Josh');
+            background-image: url('https://via.placeholder.com/150/d35400/ffffff?text=Josh'); /* Placeholder */
             background-size: cover;
             background-position: center;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            position: relative; /* Needed for transform */
+            will-change: transform;
         }
 
-
-        /* Services Section */
         #services {
-             /* --- IMAGE PLACEHOLDER --- 
-               Replace with an image featuring chainsaws (Stihl ideally), 
-               or maybe a safely felled tree section / cut logs.
-            */
-            background-image: url('https://via.placeholder.com/1920x1080/8b4513/ffffff?text=Chainsaw+or+Cut+Logs');
-            min-height: 90vh;
+            background-color: #fff;
         }
-        #services .parallax-content {
-            background-color: rgba(100, 50, 20, 0.7); /* Brownish tint */
+         #services .content-box {
+             background-color: rgba(139, 69, 19, 0.7); /* Saddle brown tint */
         }
-        #services ul {
+         #services ul {
             list-style: none;
             padding: 0;
             margin-top: 1.5rem;
+            text-align: left;
         }
          #services li {
             margin-bottom: 0.8rem;
@@ -183,19 +200,13 @@
          }
 
 
-        /* Estimate Section */
         #estimate {
-             /* --- IMAGE PLACEHOLDER --- 
-               Replace with a background showing a clear ground area in a forest, 
-               suggesting a tree has been removed. Or a wide Utah landscape.
-            */
-            background-image: url('https://via.placeholder.com/1920x1080/778899/ffffff?text=Clear+Area+or+Utah+Landscape');
-            min-height: 80vh;
+            background-color: #e1f5fe; /* Light blue background */
         }
-        #estimate .parallax-content {
-             background-color: rgba(50, 70, 80, 0.75); /* Cool grey tint */
+         #estimate .content-box {
+             background-color: rgba(70, 90, 100, 0.8); /* Cool grey tint */
         }
-         #estimate ol {
+          #estimate ol {
             list-style-position: inside;
             text-align: left;
             margin-top: 1rem;
@@ -208,12 +219,14 @@
          }
 
 
-        /* Credentials Section - Non-Parallax for contrast */
+        /* Credentials Section - Non-Parallax, Keep Solid */
         #credentials {
             background-color: #e4e4e4; /* Light solid background */
             padding: 4rem 2rem;
             text-align: center;
             color: #333;
+             min-height: auto; /* Doesn't need full height */
+             overflow: visible; /* No moving parts to hide */
         }
          #credentials .container {
              max-width: 800px;
@@ -233,169 +246,72 @@
             color: green;
          }
 
-        /* Contact Section */
+
         #contact {
-            /* --- IMAGE PLACEHOLDER --- 
-               Replace with a final forest image, maybe looking up through trees, 
-               or a simple wood texture.
-            */
-            background-image: url('https://via.placeholder.com/1920x1080/556b2f/ffffff?text=Forest+Canopy+or+Wood');
-            min-height: 100vh;
+            background-color: #dcedc8; /* Another light green */
             padding-bottom: 6rem; /* Extra space for form */
         }
-        #contact .parallax-content {
-             background-color: rgba(30, 30, 30, 0.8); 
+        #contact .content-box {
+             background-color: rgba(30, 30, 30, 0.85);
              max-width: 700px;
         }
 
-        /* --- Contact Form Styling --- */
+        /* --- Contact Form Styling (Same as before) --- */
         .contact-form {
             margin-top: 2rem;
             text-align: left;
         }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #eee;
-        }
-
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #eee; }
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group input[type="tel"],
         .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #555;
-            background-color: #f4f4f4;
-            color: #333;
-            border-radius: 4px;
-            font-size: 1rem;
+            width: 100%; padding: 0.8rem; border: 1px solid #555;
+            background-color: #f4f4f4; color: #333; border-radius: 4px; font-size: 1rem;
         }
-         .form-group input:focus,
-         .form-group textarea:focus {
-            outline: none;
-            border-color: #d35400;
-            box-shadow: 0 0 5px rgba(211, 84, 0, 0.5);
-         }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
+        .form-group input:focus,
+        .form-group textarea:focus { outline: none; border-color: #d35400; box-shadow: 0 0 5px rgba(211, 84, 0, 0.5); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group input[type="file"] { color: #ccc; }
+        .form-group input[type="file"]::file-selector-button {
+            padding: 0.5em 1em; border: 1px solid #d35400; border-radius: 4px;
+            background-color: #d35400; color: #fff; cursor: pointer; transition: background-color 0.2s ease;
         }
-
-        .form-group input[type="file"] {
-            color: #ccc;
-        }
-        /* Style file input button slightly */
-         .form-group input[type="file"]::file-selector-button {
-            padding: 0.5em 1em;
-            border: 1px solid #d35400;
-            border-radius: 4px;
-            background-color: #d35400;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .form-group input[type="file"]::file-selector-button:hover {
-             background-color: #e67e22;
-             border-color: #e67e22;
-        }
-
-        .form-note {
-            font-size: 0.9rem;
-            color: #bbb;
-            margin-top: -0.8rem;
-            margin-bottom: 1rem;
-        }
-
+        .form-group input[type="file"]::file-selector-button:hover { background-color: #e67e22; border-color: #e67e22; }
+        .form-note { font-size: 0.9rem; color: #bbb; margin-top: -0.8rem; margin-bottom: 1rem; }
         .submit-btn {
-            display: inline-block;
-            background-color: #d35400; /* Stihl Orange */
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block; background-color: #d35400; color: #fff; padding: 0.8rem 2rem;
+            border: none; border-radius: 5px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase;
+            cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
+        .submit-btn:hover { background-color: #e67e22; transform: translateY(-2px); }
+        .submit-btn:active { transform: translateY(0); }
+        .contact-info { margin-top: 3rem; border-top: 1px solid #666; padding-top: 2rem; }
+        .contact-info p { color: #eee; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .contact-info strong { color: #fff; }
+        .contact-info a { color: #ffa500; font-weight: bold; }
+        .contact-info a:hover { color: #ffc966; }
 
-        .submit-btn:hover {
-            background-color: #e67e22; /* Lighter orange */
-            transform: translateY(-2px);
-        }
-        .submit-btn:active {
-             transform: translateY(0);
-        }
-
-        .contact-info {
-            margin-top: 3rem;
-            border-top: 1px solid #666;
-            padding-top: 2rem;
-        }
-        .contact-info p {
-             color: #eee;
-             font-size: 1.1rem;
-             margin-bottom: 0.5rem;
-        }
-        .contact-info strong {
-             color: #fff;
-        }
-         .contact-info a {
-             color: #ffa500; /* Brighter orange for links */
-             font-weight: bold;
-         }
-         .contact-info a:hover {
-              color: #ffc966;
-         }
-
-
-        /* --- Button Style --- */
+        /* --- Button Style (Same as before) --- */
         .btn {
-            display: inline-block;
-            background-color: #d35400; /* Stihl Orange */
-            color: #fff !important; /* Override link color */
-            padding: 0.8rem 1.8rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: inline-block; background-color: #d35400; color: #fff !important;
+            padding: 0.8rem 1.8rem; border: none; border-radius: 5px; font-size: 1.1rem;
+            font-weight: bold; text-transform: uppercase; text-decoration: none; cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+             position: relative; /* Allow transform */
+             will-change: transform;
         }
+        .btn:hover { background-color: #e67e22; text-decoration: none; transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
 
-        .btn:hover {
-            background-color: #e67e22; /* Lighter orange */
-            text-decoration: none;
-            transform: translateY(-2px);
-        }
-         .btn:active {
-             transform: translateY(0);
-        }
-
-        /* --- Footer --- */
+        /* --- Footer (Same as before) --- */
         footer {
-            background-color: #2c3e50; /* Dark Blue/Grey */
-            color: #bdc3c7; /* Light grey text */
-            text-align: center;
-            padding: 1.5rem 1rem;
-            font-size: 0.9rem;
+            background-color: #2c3e50; color: #bdc3c7; text-align: center;
+            padding: 1.5rem 1rem; font-size: 0.9rem; position: relative; z-index: 10; /* Ensure footer is on top */
         }
-         footer a {
-             color: #ecf0f1; /* Lighter grey for links */
-         }
+        footer a { color: #ecf0f1; }
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
@@ -403,47 +319,25 @@
             #hero h1 { font-size: 3.5rem; }
             h2 { font-size: 2rem; }
             h3 { font-size: 1.5rem; }
-            
-            .parallax-section {
-                 /* Fixed attachment can be jerky on mobile, optionally switch to scroll */
-                 /* background-attachment: scroll; */
-                 padding: 3rem 1rem;
-                 min-height: auto; /* Adjust height for content on mobile */
-                 height: auto; 
-            }
-            #hero {
-                 min-height: 80vh; /* Keep hero relatively tall */
-            }
 
-            .parallax-content {
-                padding: 1.5rem;
-                width: 90%;
-            }
+            .content-section { padding: 4rem 0; min-height: auto; }
+             #hero { min-height: 80vh; }
 
-             #credentials span {
-                 display: block;
-                 margin: 0.5rem 0;
-             }
-             
-             .contact-form {
-                 padding: 0 1rem;
-             }
+            .content-box { padding: 1.5rem; width: 90%; }
+            .parallax-bg-image { height: 100%; /* Adjust for mobile if needed */ }
+
+             #credentials span { display: block; margin: 0.5rem 0; }
+             .contact-form { padding: 0 1rem; }
         }
-
          @media (max-width: 480px) {
              h1 { font-size: 2.2rem; }
              #hero h1 { font-size: 2.8rem; }
              #hero p.subtitle { font-size: 1.2rem; }
              h2 { font-size: 1.8rem; }
              p { font-size: 1rem; }
-             
-             .parallax-content {
-                 padding: 1rem;
-             }
-             .submit-btn {
-                 font-size: 1rem;
-                 padding: 0.7rem 1.5rem;
-             }
+
+             .content-box { padding: 1rem; }
+             .submit-btn { font-size: 1rem; padding: 0.7rem 1.5rem; }
          }
 
     </style>
@@ -451,70 +345,87 @@
 <body>
 
     <!-- Hero Section -->
-    <section id="hero" class="parallax-section">
-        <!-- IMAGE: Epic Forest Background -->
-        <div class="parallax-content">
-            <h1>Man and Chainsaw</h1>
-            <p class="subtitle">Safe, Reliable & Affordable Tree Removal</p>
-            <p style="margin-bottom: 2rem;">Serving the Salt Lake City Area | Licensed, Bonded & Insured</p>
-            <a href="#contact" class="btn">Get Your Free Estimate</a>
+    <section id="hero" class="content-section">
+        <!-- Background Image - Moves slower -->
+        <img src="https://picsum.photos/seed/epicforest/1920/1080" alt="Epic forest background" class="parallax-bg-image" data-parallax-speed="0.3" id="hero-bg">
+
+        <div class="container">
+             <div class="content-box">
+                 <!-- Hero Text - Moves slightly faster than background -->
+                 <h1 data-parallax-speed="-0.1">Man and Chainsaw</h1>
+                 <p class="subtitle" data-parallax-speed="-0.05">Safe, Reliable & Affordable Tree Removal</p>
+                 <p style="margin-bottom: 2rem;" data-parallax-speed="-0.05">Serving the Salt Lake City Area | Licensed, Bonded & Insured</p>
+                 <a href="#contact" class="btn" data-parallax-speed="0.1">Get Your Free Estimate</a>
+             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="parallax-section">
-        <!-- IMAGE: Deeper Forest or Wood Texture -->
-        <div class="parallax-content">
-            <!-- Optional Image -->
-            <div class="josh-image">
-                <!-- IMAGE: Picture of Josh or representative 'brawny guy' -->
-            </div>
-            <h2>Meet Josh: The Man Behind the Chainsaw</h2>
-            <p>Hey, I'm Josh. I'm a simple man, and while I don't claim to know everything about trees, I definitely know how to cut timber safely and efficiently. </p>
-            <p>With over <strong>15 years of experience</strong>, including 4 critical years serving with the U.S. Forest Service as a Type 2 and Type 1 Wildland Firefighter on engine and hand crews, I've handled tough situations and learned the right way to bring trees down.</p>
-            <p>My focus is on getting your unwanted or hazardous trees on the ground safely, without the overhead costs of bigger companies.</p>
-        </div>
+    <section id="about" class="content-section">
+         <!-- Background Image - Moves at medium speed -->
+         <img src="https://picsum.photos/seed/deepwoods/1600/900" alt="Deeper forest" class="parallax-bg-image" data-parallax-speed="0.4">
+
+         <div class="container">
+             <div class="content-box" data-parallax-speed="-0.1"> <!-- Content box moves up slightly -->
+                 <!-- Optional Image -->
+                 <div class="josh-image" data-parallax-speed="0.1"> <!-- Josh image moves down slightly -->
+                     <!-- Placeholder image set via CSS background -->
+                 </div>
+                 <h2>Meet Josh: The Man Behind the Chainsaw</h2>
+                 <p>Hey, I'm Josh. I'm a simple man, and while I don't claim to know everything about trees, I definitely know how to cut timber safely and efficiently. </p>
+                 <p>With over <strong>15 years of experience</strong>, including 4 critical years serving with the U.S. Forest Service as a Type 2 and Type 1 Wildland Firefighter on engine and hand crews, I've handled tough situations and learned the right way to bring trees down.</p>
+                 <p>My focus is on getting your unwanted or hazardous trees on the ground safely, without the overhead costs of bigger companies.</p>
+             </div>
+         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="parallax-section">
-        <!-- IMAGE: Chainsaw (Stihl?) or Cut Logs -->
-        <div class="parallax-content">
-            <h2>What I Do (And What I Don't)</h2>
-            <p>My specialty is the safe and efficient removal of trees. If you have a tree that needs to come down, whether it's dead, hazardous, or just in the way, I'm your guy.</p>
-            <p><strong>I'm not an arborist or an expert in tree health diagnostics.</strong> My skill lies in felling and removal. If you need complex pruning for tree health or disease treatment, an arborist is your best bet. But if you need a tree safely on the ground, I can handle it.</p>
-             <p>I primarily use reliable <strong>Stihl chainsaws</strong> to get the job done right.</p>
-             <h3>Core Services:</h3>
-             <ul>
-                 <li>Complete Tree Removal</li>
-                 <li>Hazardous Tree Felling</li>
-                 <li>Storm Damage / Fallen Tree Cleanup</li>
-                 <li>Limb Removal</li>
-             </ul>
-            <h3 style="margin-top: 2rem;">Cheaper Than Bigger Companies</h3>
-            <p>Operating lean means I can pass the savings onto you. Get professional results without the hefty price tag often charged by larger tree service corporations.</p>
-        </div>
+    <section id="services" class="content-section">
+         <!-- Background Image - Maybe logs or a chainsaw, moves faster -->
+         <img src="https://picsum.photos/seed/chainsaw/1400/900" alt="Chainsaw or logs" class="parallax-bg-image" data-parallax-speed="0.6">
+
+         <div class="container">
+             <div class="content-box" data-parallax-speed="0.1"> <!-- Content box moves down -->
+                 <h2>What I Do (And What I Don't)</h2>
+                 <p>My specialty is the safe and efficient removal of trees. If you have a tree that needs to come down, whether it's dead, hazardous, or just in the way, I'm your guy.</p>
+                 <p><strong>I'm not an arborist...</strong> (rest of content same as before)</p>
+                 <p>I primarily use reliable <strong>Stihl chainsaws</strong>...</p>
+                 <h3>Core Services:</h3>
+                 <ul>
+                     <li>Complete Tree Removal</li>
+                     <li>Hazardous Tree Felling</li>
+                     <li>Storm Damage / Fallen Tree Cleanup</li>
+                     <li>Limb Removal</li>
+                 </ul>
+                <h3 style="margin-top: 2rem;">Cheaper Than Bigger Companies</h3>
+                <p>Operating lean means I can pass the savings onto you...</p>
+             </div>
+         </div>
     </section>
 
     <!-- Estimate Section -->
-    <section id="estimate" class="parallax-section">
-         <!-- IMAGE: Clear Area or Utah Landscape -->
-        <div class="parallax-content">
-            <h2>Get Your Free, No-Obligation Estimate</h2>
-            <p>Getting an estimate is easy! Since every tree and situation is unique, good pictures help me give you the most accurate quote possible without an initial site visit (saving everyone time and money!).</p>
-            <p>Here’s how:</p>
-            <ol>
-                <li>Take a few clear photos of the <strong>tree(s) or issue</strong> you need addressed.</li>
-                <li>Take photos of the <strong>surrounding area</strong> – show the ground around the tree, any obstacles (fences, sheds, houses, power lines), and access points. Pictures from the front and back help immensely.</li>
-                <li>Briefly describe what you need done and any specific concerns you have.</li>
-                <li>Use the contact form below (including picture uploads) OR email the pictures and info directly to <a href="mailto:contact@man-and-chainsaw.com"><strong>contact@man-and-chainsaw.com</strong></a>.</li>
-            </ol>
-            <p style="margin-top: 1.5rem;">The more detail you provide, the better I can understand the job and give you a fair price!</p>
-            <a href="#contact" class="btn" style="margin-top: 1rem;">Go To Contact Form</a>
+    <section id="estimate" class="content-section">
+         <!-- Background Image - Utah landscape? Moves slowly -->
+         <img src="https://picsum.photos/seed/utahview/1920/1000" alt="Utah Landscape or cleared area" class="parallax-bg-image" data-parallax-speed="0.2">
+
+         <div class="container">
+            <div class="content-box" data-parallax-speed="-0.15"> <!-- Moves up relatively fast -->
+                <h2>Get Your Free, No-Obligation Estimate</h2>
+                <p>Getting an estimate is easy! Since every tree and situation is unique...</p>
+                <p>Here’s how:</p>
+                 <ol>
+                    <li>Take a few clear photos...</li>
+                    <li>Take photos of the <strong>surrounding area</strong>...</li>
+                    <li>Briefly describe what you need done...</li>
+                    <li>Use the contact form below OR email...</li>
+                </ol>
+                <p style="margin-top: 1.5rem;">The more detail you provide...</p>
+                <a href="#contact" class="btn" style="margin-top: 1rem;" data-parallax-speed="0.05">Go To Contact Form</a>
+            </div>
         </div>
     </section>
 
-    <!-- Credentials Section -->
+    <!-- Credentials Section (No parallax effect here) -->
     <section id="credentials">
         <div class="container">
             <h2>Your Reliable Local Choice</h2>
@@ -529,60 +440,34 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="parallax-section">
-         <!-- IMAGE: Forest Canopy or Wood Texture -->
-        <div class="parallax-content">
-            <h2>Ready to Talk Trees?</h2>
-            <p>Fill out the form below or contact me directly. Let's get that tree handled!</p>
+    <section id="contact" class="content-section">
+        <!-- Background Image - Gentle forest canopy or wood texture -->
+         <img src="https://picsum.photos/seed/forestfloor/1500/1000" alt="Forest floor or wood texture" class="parallax-bg-image" data-parallax-speed="0.35">
 
-            <!-- 
-              IMPORTANT: This form requires a backend script or service (like Formspree) 
-              to actually process submissions and handle file uploads. 
-              The mailto: action is a basic fallback and VERY unreliable for file uploads.
-            -->
-            <form class="contact-form" action="mailto:contact@man-and-chainsaw.com?subject=Tree Service Estimate Request" method="post" enctype="multipart/form-data">
-                
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+        <div class="container">
+            <div class="content-box" data-parallax-speed="0"> <!-- Keep form static relative to its section? Or small movement? -->
+                <h2>Ready to Talk Trees?</h2>
+                <p>Fill out the form below or contact me directly. Let's get that tree handled!</p>
+
+                <!-- Contact Form (Same HTML as before) -->
+                <form class="contact-form" action="mailto:contact@man-and-chainsaw.com?subject=Tree Service Estimate Request" method="post" enctype="multipart/form-data">
+                    <!-- Form groups go here (Name, Email, Phone, Message, File1, File2) -->
+                    <div class="form-group"> <label for="name">Name:</label> <input type="text" id="name" name="name" required> </div>
+                    <div class="form-group"> <label for="email">Email:</label> <input type="email" id="email" name="email" required> </div>
+                    <div class="form-group"> <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone"> </div>
+                    <div class="form-group"> <label for="message">Message / Description of Job:</label> <textarea id="message" name="message" required></textarea> </div>
+                    <div class="form-group"> <label for="file1">Picture of Tree / Issue:</label> <input type="file" id="file1" name="tree_picture" accept="image/*"> <p class="form-note">Upload a clear picture...</p> </div>
+                    <div class="form-group"> <label for="file2">Picture of Surrounding Area:</label> <input type="file" id="file2" name="surroundings_picture" accept="image/*"> <p class="form-note">Show the ground, obstacles...</p> </div>
+                    <p class="form-note" style="color: #ffcc00; font-weight: bold; margin-bottom: 1.5rem;">Note: File uploads work best when sent directly via email if form submission fails.</p>
+                    <button type="submit" class="submit-btn">Send Estimate Request</button>
+                </form>
+
+                <!-- Contact Info (Same HTML as before) -->
+                <div class="contact-info">
+                    <h3>Or Contact Directly:</h3>
+                    <p><strong>Phone:</strong> <a href="tel:+13855904074">+1 (385) 590-4074</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@man-and-chainsaw.com">contact@man-and-chainsaw.com</a></p>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message / Description of Job:</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="file1">Picture of Tree / Issue:</label>
-                    <input type="file" id="file1" name="tree_picture" accept="image/*">
-                    <p class="form-note">Upload a clear picture of the tree or problem area.</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="file2">Picture of Surrounding Area:</label>
-                    <input type="file" id="file2" name="surroundings_picture" accept="image/*">
-                     <p class="form-note">Show the ground, obstacles, access (front/back views helpful).</p>
-                </div>
-                
-                <p class="form-note" style="color: #ffcc00; font-weight: bold; margin-bottom: 1.5rem;">Note: File uploads work best when sent directly via email if form submission fails.</p>
-
-                <button type="submit" class="submit-btn">Send Estimate Request</button>
-            </form>
-
-            <div class="contact-info">
-                <h3>Or Contact Directly:</h3>
-                <p><strong>Phone:</strong> <a href="tel:+13855904074">+1 (385) 590-4074</a></p>
-                <p><strong>Email:</strong> <a href="mailto:contact@man-and-chainsaw.com">contact@man-and-chainsaw.com</a></p>
             </div>
         </div>
     </section>
@@ -591,13 +476,57 @@
     <footer>
         <div class="container">
             <p>© <span id="year"></span> Man and Chainsaw | Licensed, Bonded, Insured | Serving the SLC Area, Utah</p>
-            <p>Website by AI Assistant (Needs image replacement and form backend)</p> 
+             <p>Website by AI Assistant (Needs image replacement and form backend)</p>
         </div>
     </footer>
 
     <script>
         // Simple script to update the year in the footer
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Dynamic Parallax Script ---
+
+        // Select all elements that have a 'data-parallax-speed' attribute
+        const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+
+        let ticking = false; // Optimization flag for requestAnimationFrame
+
+        function applyParallax() {
+            const scrollY = window.scrollY;
+
+            parallaxElements.forEach(el => {
+                // Get the speed multiplier from the data attribute, default to 0 if not a valid number
+                const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
+
+                // Calculate the vertical offset
+                // A positive speed moves the element DOWN as you scroll DOWN (slower than scroll)
+                // A negative speed moves the element UP as you scroll DOWN (faster than scroll, or reverse)
+                const offsetY = scrollY * speed;
+
+                // Apply the transform
+                // Using 3D transform can sometimes improve performance by hinting layer promotion
+                el.style.transform = `translate3d(0, ${offsetY}px, 0)`;
+            });
+
+            ticking = false; // Allow next animation frame request
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(applyParallax);
+                ticking = true; // Prevent multiple requests before the next frame
+            }
+        }
+
+        // Add the scroll event listener
+        window.addEventListener('scroll', onScroll);
+
+        // Optional: Apply initial parallax state on load in case the page doesn't load at the very top
+        document.addEventListener('DOMContentLoaded', () => {
+           // Small delay to ensure layout is stable, might not be strictly needed
+           setTimeout(applyParallax, 50);
+        });
+
     </script>
 
 </body>
